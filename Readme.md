@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Юлия Портнова](https://up.htmlacademy.ru/javascript/30/user/454717).
-* Наставник: [Александр Конотоп] (https://htmlacademy.ru/profile/sineway).
+* Наставник: [Александр Конотоп](https://htmlacademy.ru/profile/sineway).
 
 ---
 
