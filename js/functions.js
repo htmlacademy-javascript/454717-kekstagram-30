@@ -1,11 +1,11 @@
-const isStringLengthValid = (string, maxLength) => string.length <= maxLength;
+const isMaxLengthValid = (string, maxLength) => string.length <= maxLength;
 
 // Cтрока короче 20 символов
-isStringLengthValid('строка', 20); // true
+isMaxLengthValid('строка', 20); // true
 // Длина строки ровно 18 символов
-isStringLengthValid('проверяемая строка', 18); // true
+isMaxLengthValid('проверяемая строка', 18); // true
 // Строка длиннее 10 символов
-isStringLengthValid('проверяемая строка проверяемая строка', 10); // false
+isMaxLengthValid('проверяемая строка проверяемая строка', 10); // false
 
 
 const isPalindrom = (string) => {
