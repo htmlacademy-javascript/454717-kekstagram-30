@@ -1,4 +1,4 @@
-const isMaxLengthValid = (string, maxLength) => string.length <= maxLength;
+const isMaxLengthValid = (text, maxLength) => text.length <= maxLength;
 
 // Cтрока короче 20 символов
 isMaxLengthValid('строка', 20); // true
@@ -8,25 +8,30 @@ isMaxLengthValid('проверяемая строка', 18); // true
 isMaxLengthValid('проверяемая строка проверяемая строка', 10); // false
 
 
-const isPalindrom = (string) => {
-  const stringToCheck = string.replaceAll(' ', '').toLowerCase();
-  for (let i = 0; i < stringToCheck.length / 2; i++) {
-    if (stringToCheck.at(i) !== stringToCheck.at(-i - 1)) {
+const isPalindrome = (data) => {
+  let textToCheck;
+  if (typeof data === 'number') {
+    textToCheck = String(data);
+  } else {
+    textToCheck = data.replaceAll(' ', '').toLowerCase();
+  }
+  for (let i = 0; i < textToCheck.length / 2; i++) {
+    if (textToCheck.at(i) !== textToCheck.at(-i - 1)) {
       return false;
     }
   }
   return true;
 };
 
-isPalindrom('Топ от');
+isPalindrome(68.86);
 
 
 const parseDigits = (data) => {
-  const string = String(data);
+  const text = String(data);
   let result = '';
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] >= '0' && string[i] <= '9') {
-      result += string[i];
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] >= '0' && text[i] <= '9') {
+      result += text[i];
     }
   }
   return (result === '') ? NaN : Number(result);
