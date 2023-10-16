@@ -20,14 +20,25 @@ const createUniqueRandomNumber = (min, max) => {
   };
 };
 
+const createRepeatingRandomNumber = (min, max) => {
+  let lastGeneratedNumber = 0;
+
+  return function () {
+    lastGeneratedNumber = getRandomInteger(min, max);
+    return lastGeneratedNumber;
+  };
+};
+
 const generatePhotoId = createUniqueRandomNumber(1, 25);
 const generateUrlNumber = createUniqueRandomNumber(1, 25);
-const url = 'photos/' + generateUrlNumber() + '.jpg';
+const url = `photos/${generateUrlNumber()}.jpg`;
+const generateLikesNumber = createRepeatingRandomNumber(1, 25);
 
 const createPhotoDescription = () => ({
   id: generatePhotoId(),
   url:  url,
-  likes: getRandomInteger(15, 200),
+  likes: generateLikesNumber(),
 });
 
-console.log(createPhotoDescription());
+const photos = Array.from({length: 25}, createPhotoDescription);
+console.table(photos);
