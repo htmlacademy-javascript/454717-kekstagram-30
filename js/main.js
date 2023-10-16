@@ -31,6 +31,4 @@ const createPicturesData = (itemCount = 25) => {
   }));
 };
 
-const photos = createPicturesData();
-console.table(photos);
-console.table(photos[3].comments);
+void(createPicturesData());
