@@ -1,44 +1,23 @@
 const getRandomInteger = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const fraction = Math.random() * (max - min + 1) + min;
+  return Math.floor(fraction);
 };
 
-const createUniqueRandomNumber = (min, max) => {
-  const previousValue = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValue.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValue.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValue.push(currentValue);
-    return currentValue;
-  };
+const getRandomItem = (items) =>{
+  const index = Math.floor(Math.random() * items.length);
+  return items[index];
 };
 
-const createRepeatingRandomNumber = (min, max) => {
-  let lastGeneratedNumber = 0;
-
-  return function () {
-    lastGeneratedNumber = getRandomInteger(min, max);
-    return lastGeneratedNumber;
-  };
+const createPicturesData = (itemCount = 25) => {
+  const descriptions = ['Описание 1', 'Описание 2', 'Описание 3'];
+  return new Array(itemCount).fill(1).map((start, index) => ({
+    id: start + index,
+    url: `photos/${start + index}.jpg`,
+    description: getRandomItem(descriptions),
+    likes: getRandomInteger(15, 200),
+    comments: [], //TODO: createCommentsData
+  }));
 };
 
-const generatePhotoId = createUniqueRandomNumber(1, 25);
-const generateUrlNumber = createUniqueRandomNumber(1, 25);
-const url = `photos/${generateUrlNumber()}.jpg`;
-const generateLikesNumber = createRepeatingRandomNumber(1, 25);
-
-const createPhotoDescription = () => ({
-  id: generatePhotoId(),
-  url:  url,
-  likes: generateLikesNumber(),
-});
-
-const photos = Array.from({length: 25}, createPhotoDescription);
+const photos = createPicturesData();
 console.table(photos);
