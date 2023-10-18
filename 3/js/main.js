@@ -1,8 +1,15 @@
-const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+const getRandomInteger = (min, max) => {
+  const fraction = Math.random() * (max - min + 1) + min;
+  return Math.floor(fraction);
+};
 
-const getRandomItem = (items) => items[getRandomInteger(0, items.length - 1)];
+const getRandomItem = (items) => {
+  const lastIndex = items.length - 1;
+  const index = getRandomInteger(0, lastIndex);
+  return items[index];
+};
 
-const createCommentsData = (length) => {
+const createCommentsData = (itemCount) => {
   const messages = [
     'Всё отлично!',
     'В целом всё неплохо. Но не всё.',
@@ -12,7 +19,7 @@ const createCommentsData = (length) => {
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
   ];
   const names = ['Сергей', 'Ольга', 'Анна', 'Владимир', 'Николай', 'Артём', 'Виктор', 'Наталья', 'Надежда'];
-  return new Array (length).fill(1).map((start, index) => ({
+  return new Array(itemCount).fill(1).map((start, index) => ({
     id: start + index,
     avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
     message: getRandomItem(messages),
@@ -31,6 +38,4 @@ const createPicturesData = (itemCount = 25) => {
   }));
 };
 
-const photos = createPicturesData();
-console.table(photos);
-console.table(photos[3].comments);
+void(createPicturesData);
