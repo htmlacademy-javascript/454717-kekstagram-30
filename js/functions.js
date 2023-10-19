@@ -16,9 +16,8 @@ const parseDigits = (sequence) => {
 };
 
 const getTimeInMinutes = (stringTime) => {
-  const [hours, minutes] = stringTime.split(':');
-  const result = Number(hours) * 60 + Number(minutes);
-  return result;
+  const [hours, minutes] = stringTime.split(':').map(Number);
+  return hours * 60 + minutes;
 };
 
 const isMeetingTimeFits = (startOfWork, endOfWork, startOfMeeting, meetingDuration) => {
