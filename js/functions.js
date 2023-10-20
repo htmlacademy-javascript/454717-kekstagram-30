@@ -15,4 +15,17 @@ const parseDigits = (sequence) => {
   return digits ? Number(digits) : NaN;
 };
 
-void(isMaxLengthValid, isPalindrome, parseDigits);
+const getTimeInMinutes = (stringTime) => {
+  const [hours, minutes] = stringTime.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const isMeetingTimeFits = (startOfWork, endOfWork, startOfMeeting, meetingDuration) => {
+  startOfWork = getTimeInMinutes(startOfWork);
+  endOfWork = getTimeInMinutes(endOfWork);
+  startOfMeeting = getTimeInMinutes(startOfMeeting);
+  const endOfMeeting = startOfMeeting + meetingDuration;
+  return (startOfWork <= startOfMeeting) && (endOfWork >= endOfMeeting);
+};
+
+void(isMaxLengthValid, isPalindrome, parseDigits, isMeetingTimeFits);

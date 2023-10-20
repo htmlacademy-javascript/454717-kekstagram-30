@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomItem} from './utilities';
+import {getRandomInteger, getRandomItem} from './utilities.js';
 
 const createCommentsData = (itemCount) => {
   const messages = [
