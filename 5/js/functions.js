@@ -21,12 +21,11 @@ const getTimeInMinutes = (stringTime) => {
 };
 
 const isMeetingTimeFits = (startOfWork, endOfWork, startOfMeeting, meetingDuration) => {
-  const startOfWorkInMinutes = getTimeInMinutes(startOfWork);
-  const endOfWorkInMinutes = getTimeInMinutes(endOfWork);
-  const startOfMeetingInMinutes = getTimeInMinutes(startOfMeeting);
-  const endOfMeetingInMinutes = startOfMeetingInMinutes + meetingDuration;
-  const result = (startOfWorkInMinutes <= startOfMeetingInMinutes) && (endOfWorkInMinutes >= endOfMeetingInMinutes);
-  return result;
+  startOfWork = getTimeInMinutes(startOfWork);
+  endOfWork = getTimeInMinutes(endOfWork);
+  startOfMeeting = getTimeInMinutes(startOfMeeting);
+  const endOfMeeting = startOfMeeting + meetingDuration;
+  return (startOfWork <= startOfMeeting) && (endOfWork >= endOfMeeting);
 };
 
 void(isMaxLengthValid, isPalindrome, parseDigits, isMeetingTimeFits);
