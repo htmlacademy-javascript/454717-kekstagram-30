@@ -1,6 +1,4 @@
 import {createPicturesData} from './data.js';
-import './thumbnails.js';
+import {buildThumbnails} from './thumbnails.js';
 
-void(createPicturesData);
-
-export {createPicturesData};
+buildThumbnails(createPicturesData);
