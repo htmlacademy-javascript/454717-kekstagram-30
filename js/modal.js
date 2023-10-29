@@ -7,19 +7,19 @@ const thumbnails = document.querySelector('.pictures');
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    modal.classList.add('hidden');
+    closeModal();
   }
 };
 
-const openModal = () => {
+function openModal () {
   modal.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
-};
+}
 
-const closeModal = () => {
+function closeModal () {
   modal.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentKeydown);
-};
+}
 
 const onThumbnailsClick = (evt) => {
   if (evt.target.closest('.picture')) {
