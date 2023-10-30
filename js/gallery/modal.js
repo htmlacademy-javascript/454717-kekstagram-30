@@ -1,8 +1,8 @@
-import {isEscapeKey} from './utilities';
+import {isEscapeKey} from '../utilities';
 
 const modal = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
-const thumbnails = document.querySelector('.pictures');
+// const thumbnails = document.querySelector('.pictures');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -21,13 +21,11 @@ function closeModal () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-const onThumbnailsClick = (evt) => {
-  if (evt.target.closest('.picture')) {
-    evt.preventDefault();
-    openModal();
-  }
+closeButton.addEventListener('click', () => closeModal());
+
+const renderPopup = (properties) => {
+  console.log(properties);
+  openModal();
 };
 
-thumbnails.addEventListener('click', onThumbnailsClick);
-
-closeButton.addEventListener('click', () => closeModal());
+export {renderPopup};

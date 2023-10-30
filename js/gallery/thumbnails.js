@@ -1,8 +1,9 @@
 const container = document.querySelector('.pictures');
 const template = document.querySelector('#picture');
 
-const createThumbnailClickHandler = (properties) => () => {
-  console.log(properties);
+const createThumbnailClickHandler = (properties) => (evt) => {
+  evt.preventDefault();
+  document.dispatchEvent(new CustomEvent('thumbnailSelect', {detail: properties}));
 };
 
 const createThumbnails = (picturesData) => picturesData.map((properties) => {
