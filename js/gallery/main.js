@@ -1,5 +1,9 @@
 import {renderModal} from './modal.js';
 
-document.addEventListener('thumbnailSelect', (evt) => {
-  renderModal(evt.detail);
-});
+function initGallery() {
+  document.addEventListener('thumbnailSelect', (evt) => {
+    renderModal(evt.detail);
+  });
+}
+
+export {initGallery};

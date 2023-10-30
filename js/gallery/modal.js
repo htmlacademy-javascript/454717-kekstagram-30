@@ -49,10 +49,12 @@ const renderModal = (properties) => {
   modal.querySelector('.social__caption').textContent = description;
   modal.querySelector('.social__comment-shown-count').textContent = comments.length;
   modal.querySelector('.social__comment-total-count').textContent = comments.length;
+
   counter.classList.add('hidden');
   commentsLoader.classList.add('hidden');
 
   renderComments(comments);
+
   document.body.classList.add('modal-open');
 
   openModal();
