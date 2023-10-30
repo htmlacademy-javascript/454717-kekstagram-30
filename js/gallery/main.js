@@ -1,5 +1,5 @@
-import {renderPopup} from './modal.js';
+import {renderModal} from './modal.js';
 
 document.addEventListener('thumbnailSelect', (evt) => {
-  renderPopup(evt.detail);
+  renderModal(evt.detail);
 });

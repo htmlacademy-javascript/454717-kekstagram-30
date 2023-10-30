@@ -2,7 +2,6 @@ import {isEscapeKey} from '../utilities';
 
 const modal = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
-// const thumbnails = document.querySelector('.pictures');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -23,9 +22,15 @@ function closeModal () {
 
 closeButton.addEventListener('click', () => closeModal());
 
-const renderPopup = (properties) => {
-  console.log(properties);
+const renderModal = (properties) => {
+  const {url, description, likes, comments} = properties;
+  modal.querySelector('.big-picture__img img').src = url;
+  modal.querySelector('.likes-count').textContent = likes;
+  modal.querySelector('.social__caption').textContent = description;
+  modal.querySelector('.social__comment-shown-count').textContent = '2';
+  modal.querySelector('.social__comment-total-count').textContent = comments.length;
+
   openModal();
 };
 
-export {renderPopup};
+export {renderModal};
