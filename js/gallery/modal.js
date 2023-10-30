@@ -3,7 +3,9 @@ import {isEscapeKey} from '../utilities';
 const modal = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
 const commentsTemplate = document.querySelector('#comment');
-const commentsContainer = document.querySelector('.social__comments');
+const commentsContainer = modal.querySelector('.social__comments');
+const counter = modal.querySelector('.social__comment-count');
+const commentsLoader = modal.querySelector('.comments-loader');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -46,6 +48,8 @@ const renderModal = (properties) => {
   modal.querySelector('.social__caption').textContent = description;
   modal.querySelector('.social__comment-shown-count').textContent = comments.length;
   modal.querySelector('.social__comment-total-count').textContent = comments.length;
+  counter.classList.add('hidden');
+  commentsLoader.classList.add('hidden');
 
   renderComments(comments);
 
