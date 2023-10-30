@@ -22,6 +22,7 @@ function openModal () {
 function closeModal () {
   modal.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentKeydown);
+  document.body.classList.remove('modal-open');
 }
 
 closeButton.addEventListener('click', () => closeModal());
@@ -52,6 +53,7 @@ const renderModal = (properties) => {
   commentsLoader.classList.add('hidden');
 
   renderComments(comments);
+  document.body.classList.add('modal-open');
 
   openModal();
 };
