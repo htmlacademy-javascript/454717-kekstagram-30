@@ -1,5 +1,3 @@
-import {isEscapeKey} from '../utilities';
-
 const modal = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
 const commentsTemplate = document.querySelector('#comment');
@@ -7,8 +5,8 @@ const commentsContainer = modal.querySelector('.social__comments');
 const counter = modal.querySelector('.social__comment-count');
 const commentsLoader = modal.querySelector('.comments-loader');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(event)) {
+const onDocumentKeydown = (event) => {
+  if (event.key === 'Escape') {
     event.preventDefault();
     closeModal();
   }
