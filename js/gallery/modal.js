@@ -8,8 +8,8 @@ const counter = modal.querySelector('.social__comment-count');
 const commentsLoader = modal.querySelector('.comments-loader');
 
 const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
+  if (isEscapeKey(event)) {
+    event.preventDefault();
     closeModal();
   }
 };
