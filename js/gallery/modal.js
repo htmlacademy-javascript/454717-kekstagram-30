@@ -4,18 +4,18 @@ const modal = document.querySelector('.big-picture');
 const closeButton = modal.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (event) => {
-  if (event.key === 'Escape') {
-    closeModal();
+  if (event.key.startsWith('Esc')) {
+    closeButton.click();
   }
 };
 
-function openModal () {
+const openModal = () => {
   modal.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
-function closeModal () {
+const closeModal = () => {
   modal.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
