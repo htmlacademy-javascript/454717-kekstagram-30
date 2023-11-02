@@ -9,6 +9,4 @@ const getRandomItem = (items) => {
   return items[index];
 };
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
-
-export {getRandomInteger, getRandomItem, isEscapeKey};
+export {getRandomInteger, getRandomItem};
