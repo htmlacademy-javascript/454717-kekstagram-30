@@ -20,6 +20,7 @@ const closeModal = () => {
   modal.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  document.dispatchEvent(new CustomEvent('modalClose'));
 };
 
 closeButton.addEventListener('click', () => closeModal());
