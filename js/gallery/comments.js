@@ -13,11 +13,23 @@ const createComments = (commentsData) => commentsData.map((properties) => {
   return comment;
 });
 
-const renderComments = (commentsData) => {
-  container.replaceChildren(...createComments(commentsData));
-  shownCounter.textContent = commentsData.length;
+const renderComments = (commentsData, step = 5) => {
+  const data = [...commentsData];
+
+  const onLoaderButtonClick = () => {
+    container.append(...createComments(data.splice(0, step)));
+    loaderButton.classList.toggle('hidden', !data.length);
+    shownCounter.textContent = commentsData.length - data.length;
+  };
   totalCounter.textContent = commentsData.length;
-  loaderButton.classList.add('hidden');
+  container.replaceChildren();
+
+  loaderButton.addEventListener('click', onLoaderButtonClick);
+  loaderButton.click();
+
+  document.addEventListener('modalClose', () => {
+    loaderButton.removeEventListener('click', onLoaderButtonClick);
+  }, {once: true});
 };
 
 export {renderComments};
