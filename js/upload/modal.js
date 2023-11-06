@@ -2,7 +2,7 @@ const modal = document.querySelector('.img-upload__overlay');
 const closeButton = modal.querySelector('.img-upload__cancel');
 
 const onDocumentKeydown = (event) => {
-  if (event.key.startsWith('Esc')) {
+  if (event.key.startsWith('Esc') && !event.target.matches('.text__description') && !event.target.matches('.text__hashtags')) {
     closeButton.click();
   }
 };
