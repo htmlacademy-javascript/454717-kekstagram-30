@@ -2,14 +2,13 @@ const modal = document.querySelector('.img-upload__overlay');
 const closeButton = modal.querySelector('.img-upload__cancel');
 
 const onDocumentKeydown = (event) => {
-  if (event.key.startsWith('Esc') && !event.target.matches('.text__description') && !event.target.matches('.text__hashtags')) {
+  if (event.key.startsWith('Esc') && !event.target.type?.startsWith('text')) {
     closeButton.click();
   }
 };
 
 const openModal = () => {
   modal.classList.remove('hidden');
-  modal.scroll(0, 0);
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 };
@@ -22,4 +21,4 @@ const closeModal = () => {
 
 closeButton.addEventListener('click', () => closeModal());
 
-export {openModal};
+export {openModal, closeModal};

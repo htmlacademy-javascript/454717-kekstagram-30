@@ -1,16 +1,20 @@
 import {openModal} from './modal.js';
-import './validation.js';
+import {checkValidity, resetValidity} from './validation.js';
 
-const uploadInput = document.querySelector('.img-upload__input');
+const form = document.querySelector('.img-upload__form');
 
-const onUploadInputChange = () => {
-  openModal();
-};
+form.addEventListener('change', (event) => {
+  if (event.target.name === 'filename') {
+    openModal();
+  }
+});
 
-const uploadPhoto = () => {
-  uploadInput.addEventListener('change', onUploadInputChange);
-};
+form.addEventListener('submit', (event) => {
+  if (!checkValidity()) {
+    event.preventDefault();
+  }
+});
 
-
-
-export {uploadPhoto};
+form.addEventListener('reset', () => {
+  resetValidity();
+});
