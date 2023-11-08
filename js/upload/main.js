@@ -1,11 +1,17 @@
 import {openModal} from './modal.js';
 import {checkValidity, resetValidity} from './validation.js';
+import {setScale} from './scale.js';
 
 const form = document.querySelector('.img-upload__form');
+const image = document.querySelector('.img-upload__preview');
+
+setScale(image);
 
 form.addEventListener('change', (event) => {
-  if (event.target.name === 'filename') {
-    openModal();
+  switch (event.target.name) {
+    case 'filename':
+      openModal();
+      break;
   }
 });
 
