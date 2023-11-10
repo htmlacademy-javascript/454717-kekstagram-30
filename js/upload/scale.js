@@ -1,25 +1,19 @@
-const scale = document.querySelector('.scale__control--value');
-const scaleDown = document.querySelector('.scale__control--smaller');
-const scaleUp = document.querySelector('.scale__control--bigger');
+const [scaleDownButton, display, scaleUpButton] = document.querySelectorAll('.scale__control');
+const config = {min: 25, max: 100, step: 25, defaultValue: 100};
 
-const setScale = (image, step = 25) => {
-  let scaleValue = 100;
-
-  scaleDown.addEventListener ('click', () => {
-    if (scaleValue > 25) {
-      scaleValue -= step;
-      scale.value = `${scaleValue}%`;
-      image.style.transform = `scale(${scaleValue / 100})`;
-    }
-  });
-
-  scaleUp.addEventListener ('click', () => {
-    if (scaleValue < 100) {
-      scaleValue += step;
-      scale.value = `${scaleValue}%`;
-      image.style.transform = `scale(${scaleValue / 100})`;
-    }
-  });
+const setScale = (value) => {
+  value = Math.max(value, config.min);
+  value = Math.min(value, config.max);
+  display.value = `${value}%`;
+  display.dispatchEvent(new Event('change', {bubbles: true}));
 };
 
-export {setScale};
+const getScale = () => Number.parseFloat(display.value);
+const resetScale = () => setScale(config.defaultValue);
+const scaleDown = () => setScale(getScale() - config.step);
+const scaleUp = () => setScale(getScale() + config.step);
+
+scaleDownButton.addEventListener('click', () => scaleDown());
+scaleUpButton.addEventListener('click', () => scaleUp());
+
+export {getScale, resetScale};
