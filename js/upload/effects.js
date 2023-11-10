@@ -17,7 +17,7 @@ const formatters = {
   marvin: (value) => `invert(${value}%)`,
   phobos: (value) => `blur(${value}px)`,
   heat: (value) => `brightness(${value})`,
-}
+};
 
 const createOptions = (type) => {
   const [min, max, step] = ranges[type];
