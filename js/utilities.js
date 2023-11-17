@@ -1,12 +1,10 @@
-const getRandomInteger = (min, max) => {
-  const fraction = Math.random() * (max - min + 1) + min;
-  return Math.floor(fraction);
+const request = async (url, options) => {
+  const response = await fetch(url, options);
+
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.json();
 };
 
-const getRandomItem = (items) => {
-  const lastIndex = items.length - 1;
-  const index = getRandomInteger(0, lastIndex);
-  return items[index];
-};
-
-export {getRandomInteger, getRandomItem};
+export {request};
