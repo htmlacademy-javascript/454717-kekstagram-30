@@ -1,33 +1,25 @@
-import {renderGallery} from './gallery/main.js';
-import './upload/main.js';
+import {request} from './utilities.js';
 import {renderStatus} from './status.js';
+import {renderGallery} from './gallery/main.js';
+import {setSubmitDisabled, resetForm} from './upload/main.js';
 
-document.addEventListener('formdata', (event) => {
-  fetch('https://30.javascript.pages.academy/kekstagram',
-    {
-      method: 'POST',
-      body: event.formData,
-    },
-  )
-    .then((response) => {
-      if(!response.ok){
-        throw new Error();
-      }
-      renderStatus('success');
-    })
-    .catch(() => {
-      renderStatus('error');
-    });
+const baseURL = 'https://30.javascript.pages.academy/kekstagram';
+
+document.addEventListener('formdata', async (event) => {
+  try {
+    setSubmitDisabled(true);
+    await request(baseURL, {method: 'post', body: event.formData});
+    resetForm();
+    renderStatus('success');
+  } catch {
+    renderStatus('error');
+  } finally {
+    setSubmitDisabled(false);
+  }
 });
 
-fetch('https://30.javascript.pages.academy/kekstagram/data')
-  .then ((response) => {
-    if (!response.ok) {
-      throw new Error();
-    }
-    return(response.json());
-  })
-  .then ((data) => renderGallery(data))
-  .catch(() => {
-    renderStatus('data-error');
-  });
+try {
+  renderGallery(await request(`${baseURL}/data`));
+} catch {
+  renderStatus('data-error', {autoHide: 5000});
+}
