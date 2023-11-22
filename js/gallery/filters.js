@@ -18,13 +18,4 @@ const renderFilters = () => {
   container.addEventListener('click', onContainerClick);
 };
 
-// const filterData = (data, setting) => {
-//   const compareThumbnails = (thumbnailA, thumbnailB) => {
-//     if (thumbnailA.comments.length > thumbnailB.comments.length) {
-//       return thumbnailB.comments.length - thumbnailA.comments.length;
-//     }
-//   };
-
-// };
-
 export {renderFilters, selectFilter};
