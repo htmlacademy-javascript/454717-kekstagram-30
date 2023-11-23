@@ -7,19 +7,15 @@ const form = document.querySelector('.img-upload__form');
 const preview = document.querySelector('.img-upload__preview img');
 const effectsPreviews = document.querySelectorAll('.effects__preview');
 const submitButton = form.querySelector('.img-upload__submit');
-const fileChooser = form.querySelector('.img-upload__input');
 
-const renderPreview = (fileTypes = ['jpg', 'jpeg', 'png']) => {
-  const file = fileChooser.files[0];
-  const fileName = file.name.toLowerCase();
-  const matches = fileTypes.some((it) => fileName.endsWith(it));
-
-  if (matches) {
+const renderFile = (file) => {
+  if (file.type.startsWith('image')) {
     preview.src = URL.createObjectURL(file);
     effectsPreviews.forEach((effectsPreview) => {
       effectsPreview.style.backgroundImage = `url('${URL.createObjectURL(file)}')`;
     });
   }
+  openModal();
 };
 
 const setSubmitDisabled = (flag) => {
@@ -35,8 +31,7 @@ const resetForm = () => {
 form.addEventListener('change', (event) => {
   switch (event.target.name) {
     case 'filename':
-      renderPreview();
-      openModal();
+      renderFile(event.target.files[0]);
       break;
     case 'scale':
       preview.style.transform = `scale(${getScale() / 100})`;
