@@ -12,7 +12,7 @@ const renderFile = (file) => {
   if (file.type.startsWith('image')) {
     preview.src = URL.createObjectURL(file);
     effectsPreviews.forEach((effectsPreview) => {
-      effectsPreview.style.backgroundImage = `url('${URL.createObjectURL(file)}')`;
+      effectsPreview.style.backgroundImage = `url('${preview.src}')`;
     });
   }
   openModal();
